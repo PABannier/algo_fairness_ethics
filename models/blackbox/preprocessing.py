@@ -6,7 +6,7 @@ from sklearn.preprocessing import LabelEncoder
 
 
 def get_preprocessed_data():
-    df = pd.read_excel("../data/data_project.xlsx")
+    df = pd.read_excel("../../data/data_project.xlsx")
 
     features = [
         "CreditDuration",

@@ -88,3 +88,7 @@ if __name__ == "__main__":
 
     print("OOF AUC score: ", roc_auc_score(y, y_oof))
     print("OOF F1 score:", f1_score(y, y_oof > 0.5))
+
+    with open("../../outputs/proba_lgb_blackbox.npx", "wb") as outfile:
+        np.save(outfile, y_oof)
+    print("Proba vector saved!")
