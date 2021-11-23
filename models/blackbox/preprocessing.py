@@ -1,11 +1,17 @@
 #!/usr/local/bin/python3
 
 import pandas as pd
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 
-from sklearn.preprocessing import LabelEncoder
 
-
-def get_preprocessed_data(target):
+def get_preprocessed_data(target, scaling):
+    """
+    Preprocessing data with label encoding the categorical features
+    Args: 
+        - target (string): target variable
+        - scaling (boolean): whether to use Standard Scaling or not
+    """
+    
     df = pd.read_excel("../../data/data_project.xlsx")
 
     numerical_features = [
@@ -28,8 +34,6 @@ def get_preprocessed_data(target):
     
     features = numerical_features + categorical_features
 
-    #target = target
-
     # assert features == categorical_features + numerical_features
     
     df = df.dropna(subset=[target])
@@ -41,6 +45,11 @@ def get_preprocessed_data(target):
         X[cat_feature].fillna("Unknown", inplace=True)
         encoder = LabelEncoder()
         X[cat_feature] = encoder.fit_transform(X[cat_feature])
+        
+    # Standard scalling numerical columns
+    if scaling == True:
+        scaler = StandardScaler()
+        X[numerical_features] = scaler.fit_transform(X[numerical_features])
 
     # Check no NaN values
     assert X.isna().sum().sum() == 0, "NaN values"
