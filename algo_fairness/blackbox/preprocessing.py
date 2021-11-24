@@ -5,8 +5,8 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 
 
-def get_preprocessed_data(target):
-    df = pd.read_excel("../../data/data_project.xlsx")
+def get_preprocessed_data(input_path, target):
+    df = pd.read_excel(input_path)
 
     numerical_features = [
         "CreditDuration",
@@ -45,4 +45,4 @@ def get_preprocessed_data(target):
     # Check no NaN values
     assert X.isna().sum().sum() == 0, "NaN values"
 
-    return X, y, numerical_features, categorical_features, target
+    return X, y, numerical_features, categorical_features
