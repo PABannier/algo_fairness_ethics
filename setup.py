@@ -6,7 +6,8 @@ setup(
         "numpy>=1.12",
         "scikit-learn>=0.23",
         "lightgbm",
-        "statsmodels"
+        "statsmodels",
+        "dtreeviz",
     ],
-    packages=find_packages()
+    packages=find_packages(),
 )
