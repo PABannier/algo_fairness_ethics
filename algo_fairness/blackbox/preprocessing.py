@@ -12,9 +12,6 @@ def get_preprocessed_data(input_path, target, scaling=True):
         input_path (str): Data path
         target (str): Target variable
         scaling (boolean): if true, data are scaled
-
-    Returns:
-        [type]: [description]
     """
     df = pd.read_excel(input_path)
 
