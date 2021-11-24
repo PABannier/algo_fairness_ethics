@@ -1,6 +1,7 @@
 #!/usr/local/bin/python3
 
 import statsmodels.api as sm
+from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 
@@ -15,14 +16,15 @@ def train_lr_surrogate(X, y_hat):
     """
     X_train, X_test, y_train, y_test = train_test_split(X, y_hat, test_size=0.3)
 
-    model = sm.OLS(y_train, X_train)
-    results = model.fit()
+    results = sm.OLS(y_train, X_train).fit()
     print("==== FITTING RESULTS ====")
-    print(results)
+    print(results.summary())
 
     print("\n")
 
     # Inference
+    model = LinearRegression()
+    model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
 
     # Some performance metrics
