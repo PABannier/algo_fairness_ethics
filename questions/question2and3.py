@@ -1,3 +1,5 @@
+import joblib
+
 import numpy as np
 
 from sklearn.model_selection import StratifiedKFold
@@ -13,12 +15,14 @@ folds = 5
 kf = StratifiedKFold(n_splits=folds)
 
 # Loading data
-X, y, _, categorical_features = get_preprocessed_data("CreditRisk (y)")
+X, y, _, categorical_features = get_preprocessed_data(
+    "../data/data_project.xlsx", "CreditRisk (y)"
+)
 
 # Fitting
 y_oof = np.zeros(X.shape[0])
 
-for train_idx, valid_idx in kf.split(X, y):
+for i, (train_idx, valid_idx) in enumerate(kf.split(X, y)):
     train_data = X.iloc[train_idx, :], y[train_idx]
     valid_data = X.iloc[valid_idx, :], y[valid_idx]
 
@@ -31,6 +35,9 @@ for train_idx, valid_idx in kf.split(X, y):
         bf=0.7,
     )
     y_oof[valid_idx] = y_pred_valid
+
+    with open(f"../outputs/lgbm_bb_fold_{i}.pkl", "wb") as outfile:
+        joblib.dump(model, outfile)
 
 print("OOF AUC score: ", roc_auc_score(y, y_oof))
 print("OOF F1 score:", f1_score(y, y_oof > 0.5))
