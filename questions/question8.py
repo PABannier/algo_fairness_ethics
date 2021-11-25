@@ -6,6 +6,7 @@ def shap_viz(model, X_train, instance, plot_type):
     Args:
         model : trained model
         X_train : X_train used to train the model
+        instance (int) : instance to be visualized
         plot_type {'waterfall', 'force', 'beeswarm', 'bar'} : 
         * waterfall : visualize the first prediction's explanation
         * force : visualizes the first prediction's explanation with a force plot
