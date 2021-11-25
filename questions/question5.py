@@ -5,6 +5,8 @@ from sklearn.model_selection import train_test_split
 from algo_fairness.blackbox.preprocessing import get_preprocessed_data
 from algo_fairness.tools.pdp import pdp_ice
 
+OUT_FIGURE_PATH = "../outputs/pdp_plot.jpeg"
+
 X, y, numerical_features, categorical_features = get_preprocessed_data(
     "../data/data_project.xlsx", "CreditRisk (y)"
 )
@@ -20,4 +22,5 @@ pdp_ice(
     model,
     X_train,
     numerical_features + categorical_features,
+    out_figure_path=OUT_FIGURE_PATH,
 )

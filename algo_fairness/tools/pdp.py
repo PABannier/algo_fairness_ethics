@@ -13,6 +13,7 @@ def pdp_ice(
     n_jobs=3,
     grid_resolution=20,
     random_state=0,
+    out_figure_path=None,
 ):
     """
     Plots the partial dependence, both individual (ICE) and averaged one (PDP)
@@ -40,3 +41,7 @@ def pdp_ice(
     )
     display.figure_.subplots_adjust(hspace=0.5)
     plt.show()
+
+    if out_figure_path:
+        plt.savefig(out_figure_path)
+        print(f"PDP saved at {out_figure_path}!")
