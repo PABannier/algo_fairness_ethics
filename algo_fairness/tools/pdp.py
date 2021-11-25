@@ -40,8 +40,10 @@ def pdp_ice(
         pd_line_kw={"color": "tab:orange", "linestyle": "--"},
     )
     display.figure_.subplots_adjust(hspace=0.5)
-    plt.show()
 
     if out_figure_path:
+        plt.draw()
         plt.savefig(out_figure_path)
         print(f"PDP saved at {out_figure_path}!")
+
+    plt.show()

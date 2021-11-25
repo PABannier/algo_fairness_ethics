@@ -22,6 +22,8 @@ def ale_viz(model, X_train, features, include_CI, outpath=None):
             include_CI=include_CI,
             C=0.95,
         )
-        plt.show()
         if outpath:
+            plt.draw()
             plt.savefig(outpath + f"{i}.jpeg")
+
+        plt.show()
