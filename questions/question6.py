@@ -7,7 +7,7 @@ def ale_viz(model, X_train, features, include_CI):
     """
      Plots the accumulation local effect of a given input feature's effect on the prediction of a ML model on average, taking into consideration the correlation between the features
      Args:
-         model : Trained model
+         model : trained model
          X_train : X_train used to train the model
          features (list) : list of the features whose influence on the prediction of the ML model is evaluated
          include_CI (boolean) : confidence interval of 0.95
