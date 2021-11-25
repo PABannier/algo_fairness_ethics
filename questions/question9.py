@@ -2,8 +2,6 @@ import numpy as np
 import pandas as pd
 from scipy.stats import chi2_contingency
 
-from sklearn.model_selection import train_test_split
-
 from algo_fairness.blackbox.preprocessing import get_preprocessed_data
 
 
