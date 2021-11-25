@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 plt.rcParams["figure.figsize"] = 16, 9
 
 
-def ale_viz(model, X_train, features, include_CI):
+def ale_viz(model, X_train, features, include_CI, outpath=None):
     """
     Plots the accumulation local effect of a given input feature's effect on the prediction of a ML model on average, taking into consideration the correlation between the features
     Args:
@@ -23,3 +23,5 @@ def ale_viz(model, X_train, features, include_CI):
             C=0.95,
         )
         plt.show()
+        if outpath:
+            plt.savefig(outpath + f"{i}.jpeg")
