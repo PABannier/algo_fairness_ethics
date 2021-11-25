@@ -1,4 +1,19 @@
-# algo_fairness_ethics
-Group project for the Algo fairness class
+# Group project for the Algo fairness class
 
-- (DONE) Trained black-box model for Q2 (OOF AUC: 0.95, OOF F1: 0.95)
+## Aya Errajraji - Khouloud El Alami - Ali El Abbassy - Elias Lindbergs - Pierre-Antoine Bannier
+
+### Instructions
+
+Run the following command at the root of the repo to install the required packages
+as well as our code.
+
+```
+pip install -e .
+```
+
+If you face any issues when installing `shap` package, run the following command
+to download the required precompiled binaries:
+
+```
+conda install -c conda-forge shap
+```
