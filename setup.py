@@ -9,7 +9,7 @@ setup(
         "statsmodels",
         "dtreeviz",
         "shap",
-        "ale"
+        "PyALE",
     ],
     packages=find_packages(),
 )
