@@ -1,7 +1,8 @@
 import shap
+import matplotlib.pyplot as plt
 
 
-def shap_viz(model, X_train, instance, plot_type):
+def shap_viz(model, X_train, feature_names, out_path=None):
     """
     Visualizes different shap plots to explain the model's predictions using SHAP
     Args:
@@ -14,17 +15,15 @@ def shap_viz(model, X_train, instance, plot_type):
         * beeswarm : summarizes the effects of all the features
         * bar : produces stacked bars for multi-class outputs
     """
-    explainer = shap.Explainer(model)
-    shap_values = explainer(X_train)
+    explainer = shap.TreeExplainer(model)
+    shap_values = explainer.shap_values(X_train)
 
-    if plot_type == "waterfall":
-        shap.plots.waterfall(shap_values[instance])
+    shap.summary_plot(
+        shap_values, X_train, feature_names=feature_names, plot_type="bar"
+    )
 
-    elif plot_type == "force":
-        shap.plots.force(shap_values[instance])
-
-    elif plot_type == "beeswarm":
-        shap.plots.beeswarm(shap_values)
-
-    elif plot_type == "bar":
-        shap.plots.bar(shap_values)
+    if out_path:
+        plt.draw()
+        plt.savefig(out_path)
+        print(f"SHAP saved at {out_path}!")
+    plt.show()
