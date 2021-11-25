@@ -6,6 +6,12 @@ from sklearn.model_selection import train_test_split
 
 from algo_fairness.blackbox.preprocessing import get_preprocessed_data
 
+
+def run_chi2_test(df):
+    contingency_table = pd.crosstab(df["Gender"].values, df["y_hat"].values)
+    return chi2_contingency(contingency_table)
+
+
 X, y, numerical_features, categorical_features = get_preprocessed_data(
     "../data/data_project.xlsx", "CreditRisk (y)"
 )
@@ -17,12 +23,6 @@ with open("../outputs/proba_lgb_blackbox.npx", "rb") as infile:
 df = X.copy()
 df["y_hat"] = y_hat
 df["y"] = y
-
-
-def run_chi2_test(df):
-    contingency_table = pd.crosstab(df["Gender"].values, df["y_hat"].values)
-    return chi2_contingency(contingency_table)
-
 
 # Statistical parity
 p_val_0 = run_chi2_test(df)[1]

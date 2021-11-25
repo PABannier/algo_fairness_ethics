@@ -32,25 +32,27 @@ def get_preprocessed_data(input_path, target, scaling=True):
         "Group",
         "Gender",
     ]
-    
+
     features = numerical_features + categorical_features
 
     # assert features == categorical_features + numerical_features
-    
+
     df = df.dropna(subset=[target])
 
-    X, y = df[features], df[target]
+    X, y = df.loc[:, features], df[target]
 
     # Label-encoding categorical variables
     for cat_feature in categorical_features:
-        X[cat_feature].fillna("Unknown", inplace=True)
+        X.loc[:, cat_feature].fillna("Unknown", inplace=True)
         encoder = LabelEncoder()
-        X[cat_feature] = encoder.fit_transform(X[cat_feature])
-        
+        X.loc[:, cat_feature] = encoder.fit_transform(X.loc[:, cat_feature])
+
     # Standard scaling numerical columns
     if scaling:
         scaler = StandardScaler()
-        X[numerical_features] = scaler.fit_transform(X[numerical_features])
+        X.loc[:, numerical_features] = scaler.fit_transform(
+            X.loc[:, numerical_features]
+        )
 
     # Check no NaN values
     assert X.isna().sum().sum() == 0, "NaN values"
