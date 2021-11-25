@@ -8,6 +8,8 @@ setup(
         "lightgbm",
         "statsmodels",
         "dtreeviz",
+        "shap",
+        "ale"
     ],
     packages=find_packages(),
 )
