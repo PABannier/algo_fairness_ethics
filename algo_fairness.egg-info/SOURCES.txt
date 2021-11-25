@@ -11,3 +11,4 @@ algo_fairness/blackbox/preprocessing.py
 algo_fairness/blackbox/training_lgb.py
 algo_fairness/surrogate/__init__.py
 algo_fairness/surrogate/train_lr_surrogate.py
+algo_fairness/surrogate/train_tree_surrogate.py
