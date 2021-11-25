@@ -39,3 +39,4 @@ def pdp_ice(
         pd_line_kw={"color": "tab:orange", "linestyle": "--"},
     )
     display.figure_.subplots_adjust(hspace=0.5)
+    plt.show()
