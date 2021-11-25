@@ -22,3 +22,4 @@ def ale_viz(model, X_train, features, include_CI):
             include_CI=include_CI,
             C=0.95,
         )
+        plt.show()
